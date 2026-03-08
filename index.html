@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Happy Birthday ❤️</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
@@ -12,10 +14,36 @@
 body{
 margin:0;
 font-family:'Poppins',sans-serif;
-background: radial-gradient(circle at top,#2b1055,#000);
+background: radial-gradient(circle at top,#1a0933,#000);
 color:white;
 text-align:center;
 overflow-x:hidden;
+}
+
+/* stars background */
+
+.stars{
+position:fixed;
+width:100%;
+height:100%;
+background:url("https://www.transparenttextures.com/patterns/stardust.png");
+opacity:.35;
+pointer-events:none;
+}
+
+/* shooting star */
+
+.shooting-star{
+position:fixed;
+top:0;
+left:-100px;
+font-size:20px;
+animation:shoot 6s linear infinite;
+}
+
+@keyframes shoot{
+0%{transform:translateX(0) translateY(0)}
+100%{transform:translateX(120vw) translateY(60vh)}
 }
 
 section{
@@ -25,16 +53,6 @@ flex-direction:column;
 justify-content:center;
 align-items:center;
 padding:30px;
-}
-
-h1,h2{
-margin-bottom:15px;
-}
-
-p{
-max-width:700px;
-line-height:1.7;
-opacity:.9;
 }
 
 button{
@@ -54,87 +72,80 @@ button:hover{
 transform:scale(1.1);
 }
 
+/* polaroid gallery */
+
 .gallery{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
-gap:15px;
-max-width:800px;
+display:flex;
+gap:20px;
+flex-wrap:wrap;
+justify-content:center;
 margin-top:25px;
 }
 
-.gallery img{
-width:100%;
-border-radius:12px;
-box-shadow:0 8px 20px rgba(255,105,180,0.25);
+.polaroid{
+background:white;
+padding:10px;
+border-radius:8px;
+box-shadow:0 10px 20px rgba(0,0,0,0.4);
+transform:rotate(-2deg);
+transition:.3s;
+}
+
+.polaroid:hover{
+transform:rotate(0deg) scale(1.1);
+}
+
+.polaroid img{
+width:160px;
+border-radius:4px;
+}
+
+/* cake */
+
+.cake{
+font-size:80px;
+margin-top:20px;
 }
 
 .hidden-message{
 display:none;
-font-size:1.2rem;
+font-size:1.4rem;
 margin-top:20px;
 color:#ffb6e1;
 }
 
-.heart{
-font-size:3rem;
-animation:pulse 1.5s infinite;
+@keyframes heartFloat{
+0%{transform:translateY(0);opacity:1;}
+100%{transform:translateY(-100vh);opacity:0;}
 }
 
-@keyframes pulse{
-0%{transform:scale(1)}
-50%{transform:scale(1.2)}
-100%{transform:scale(1)}
-}
-
-.hearts{
-position:fixed;
-bottom:-50px;
-font-size:22px;
-animation:float 12s linear infinite;
-opacity:.6;
-}
-
-@keyframes float{
-0%{transform:translateY(0)}
-100%{transform:translateY(-120vh)}
-}
-
-.stars{
-position:fixed;
-width:100%;
-height:100%;
-background:url("https://www.transparenttextures.com/patterns/stardust.png");
-opacity:.35;
-}
-
-.countdown{
-font-size:1.5rem;
-margin-top:15px;
+@keyframes spark{
+0%{transform:scale(0);opacity:1;}
+100%{transform:scale(2);opacity:0;}
 }
 
 footer{
-opacity:.5;
+opacity:.6;
 font-size:.9rem;
 margin-bottom:20px;
 }
 
 </style>
+
 </head>
 
 <body>
 
 <div class="stars"></div>
+<div class="shooting-star">🌠</div>
 
-<!-- MUSIC -->
 <audio id="music" loop>
 <source src="music.mp3" type="audio/mpeg">
 </audio>
 
 <section>
 
-<div class="heart">❤️</div>
-
-<h1>Happy Birthday My Love</h1>
+<h1>Happy Birthday My Love ❤️</h1>
 
 <p>
 March 10 is special because the most beautiful soul was born that day.
@@ -142,8 +153,6 @@ You make my world brighter every single day.
 </p>
 
 <button onclick="playMusic()">Play Music 🎵</button>
-
-<div class="countdown" id="countdown"></div>
 
 </section>
 
@@ -153,23 +162,32 @@ You make my world brighter every single day.
 
 <p>
 Every laugh, every moment, every memory with you feels like magic.
-Thank you for being my happiness and my peace at the same time.
+Thank you for being my happiness and my peace.
 </p>
 
 </section>
 
 <section>
 
-<h2>Our Little Universe ✨</h2>
-
-<p>Some of my favorite memories with my favorite person.</p>
+<h2>Our Memories 📸</h2>
 
 <div class="gallery">
 
+<div class="polaroid">
 <img src="photo1.jpeg">
+</div>
+
+<div class="polaroid">
 <img src="photo2.jpeg">
+</div>
+
+<div class="polaroid">
 <img src="photo3.jpeg">
+</div>
+
+<div class="polaroid">
 <img src="photo4.jpeg">
+</div>
 
 </div>
 
@@ -177,29 +195,11 @@ Thank you for being my happiness and my peace at the same time.
 
 <section>
 
-<h2>A Letter From My Heart 💌</h2>
+<h2>Make a Birthday Wish 🎂</h2>
 
-<p>
-If life is a story, you are my favorite chapter.
+<div id="cake" class="cake">🎂🕯️🕯️🕯️</div>
 
-Your smile makes my worst days better.
-Your presence makes ordinary days special.
-
-I hope this year gives you everything your heart desires.
-Because you deserve the world.
-
-Happy Birthday ❤️
-</p>
-
-</section>
-
-<section>
-
-<h2>I Have a Secret 🙈</h2>
-
-<p>Click below…</p>
-
-<button onclick="revealMessage()">Open Your Surprise 🎁</button>
+<button onclick="blowCandles()">Blow the Candles</button>
 
 <div id="secret" class="hidden-message"></div>
 
@@ -215,7 +215,9 @@ function playMusic(){
 document.getElementById("music").play();
 }
 
-function revealMessage(){
+function blowCandles(){
+
+document.getElementById("cake").innerHTML="🎂";
 
 let text="I choose you. Today. Tomorrow. Forever. ❤️";
 
@@ -236,48 +238,52 @@ clearInterval(typing);
 },70);
 
 
+/* floating hearts */
+
+for(let i=0;i<25;i++){
+
+let heart=document.createElement("div");
+
+heart.innerHTML="❤️";
+
+heart.style.position="fixed";
+
+heart.style.left=Math.random()*100+"%";
+
+heart.style.bottom="0";
+
+heart.style.fontSize="28px";
+
+heart.style.animation="heartFloat 4s linear forwards";
+
+document.body.appendChild(heart);
+
+}
+
+
+/* fireworks */
+
 for(let i=0;i<40;i++){
 
-let confetti=document.createElement("div");
+let fire=document.createElement("div");
 
-confetti.innerHTML="🎉";
+fire.innerHTML="✨";
 
-confetti.style.position="fixed";
+fire.style.position="fixed";
 
-confetti.style.left=Math.random()*100+"%";
+fire.style.left=Math.random()*100+"%";
 
-confetti.style.top="-20px";
+fire.style.top=Math.random()*60+"%";
 
-confetti.style.fontSize="24px";
+fire.style.fontSize="26px";
 
-confetti.style.animation="fall 3s linear forwards";
+fire.style.animation="spark 2s linear forwards";
 
-document.body.appendChild(confetti);
-
-}
+document.body.appendChild(fire);
 
 }
 
-let birthday=new Date("March 10, 2026 00:00:00").getTime();
-
-let x=setInterval(function(){
-
-let now=new Date().getTime();
-
-let distance=birthday-now;
-
-let days=Math.floor(distance/(1000*60*60*24));
-
-let hours=Math.floor((distance%(1000*60*60*24))/(1000*60*60));
-
-let minutes=Math.floor((distance%(1000*60*60))/(1000*60));
-
-let seconds=Math.floor((distance%(1000*60))/1000);
-
-document.getElementById("countdown").innerHTML=
-"Birthday in "+days+"d "+hours+"h "+minutes+"m "+seconds+"s";
-
-},1000);
+}
 
 </script>
 
