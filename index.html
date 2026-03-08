@@ -20,7 +20,29 @@ text-align:center;
 overflow-x:hidden;
 }
 
-/* stars background */
+/* START SCREEN */
+
+#startScreen{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:#000;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+z-index:9999;
+cursor:pointer;
+}
+
+#startScreen h1{
+font-size:50px;
+margin:0;
+}
+
+/* STARS */
 
 .stars{
 position:fixed;
@@ -31,7 +53,7 @@ opacity:.35;
 pointer-events:none;
 }
 
-/* shooting star */
+/* SHOOTING STAR */
 
 .shooting-star{
 position:fixed;
@@ -72,7 +94,7 @@ button:hover{
 transform:scale(1.1);
 }
 
-/* polaroid gallery */
+/* GALLERY */
 
 .gallery{
 display:flex;
@@ -100,12 +122,14 @@ width:160px;
 border-radius:4px;
 }
 
-/* cake */
+/* CAKE */
 
 .cake{
 font-size:80px;
 margin-top:20px;
 }
+
+/* SECRET MESSAGE */
 
 .hidden-message{
 display:none;
@@ -114,10 +138,14 @@ margin-top:20px;
 color:#ffb6e1;
 }
 
+/* HEARTS */
+
 @keyframes heartFloat{
 0%{transform:translateY(0);opacity:1;}
 100%{transform:translateY(-100vh);opacity:0;}
 }
+
+/* FIREWORKS */
 
 @keyframes spark{
 0%{transform:scale(0);opacity:1;}
@@ -136,12 +164,25 @@ margin-bottom:20px;
 
 <body>
 
+<!-- START SCREEN -->
+
+<div id="startScreen" onclick="startExperience()">
+<h1>❤️</h1>
+<h2>Tap to Begin Your Birthday Surprise</h2>
+<p>Turn your sound on 🎵</p>
+</div>
+
 <div class="stars"></div>
 <div class="shooting-star">🌠</div>
 
-<audio id="music" loop>
-<source src="music.mp3" type="audio/mpeg">
-</audio>
+<!-- YOUTUBE MUSIC -->
+
+<iframe id="ytmusic"
+width="0"
+height="0"
+src=""
+allow="autoplay">
+</iframe>
 
 <section>
 
@@ -151,8 +192,6 @@ margin-bottom:20px;
 March 10 is special because the most beautiful soul was born that day.
 You make my world brighter every single day.
 </p>
-
-<button onclick="playMusic()">Play Music 🎵</button>
 
 </section>
 
@@ -211,9 +250,20 @@ Made with ❤️ just for you
 
 <script>
 
-function playMusic(){
-document.getElementById("music").play();
+/* START EXPERIENCE + MUSIC */
+
+function startExperience(){
+
+document.getElementById("startScreen").style.display="none";
+
+/* ADD YOUR YOUTUBE VIDEO ID BELOW */
+
+document.getElementById("ytmusic").src =
+"https://www.youtube.com/embed/wCkerYMffMo?autoplay=1&loop=1";
+
 }
+
+/* CAKE SURPRISE */
 
 function blowCandles(){
 
@@ -237,8 +287,7 @@ clearInterval(typing);
 
 },70);
 
-
-/* floating hearts */
+/* HEARTS */
 
 for(let i=0;i<25;i++){
 
@@ -260,8 +309,7 @@ document.body.appendChild(heart);
 
 }
 
-
-/* fireworks */
+/* FIREWORKS */
 
 for(let i=0;i<40;i++){
 
