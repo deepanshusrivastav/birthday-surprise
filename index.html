@@ -1,166 +1,285 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Happy Birthday ❤️</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday ❤️</title>
 
-  <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Poppins', sans-serif;
-      background: radial-gradient(circle at top, #2b1055, #000);
-      color: #fff;
-      text-align: center;
-      overflow-x: hidden;
-    }
+<style>
 
-    section {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      padding: 24px 16px;
-    }
+body{
+margin:0;
+font-family:'Poppins',sans-serif;
+background: radial-gradient(circle at top,#2b1055,#000);
+color:white;
+text-align:center;
+overflow-x:hidden;
+}
 
-    h1, h2 {
-      margin-bottom: 14px;
-      font-weight: 600;
-    }
+section{
+min-height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+padding:30px;
+}
 
-    p {
-      max-width: 720px;
-      font-size: 1rem;
-      line-height: 1.7;
-      opacity: 0.95;
-    }
+h1,h2{
+margin-bottom:15px;
+}
 
-    .heart {
-      font-size: 3rem;
-      animation: pulse 1.5s infinite;
-      margin-bottom: 12px;
-    }
+p{
+max-width:700px;
+line-height:1.7;
+opacity:.9;
+}
 
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.25); }
-      100% { transform: scale(1); }
-    }
+button{
+padding:14px 28px;
+border:none;
+border-radius:30px;
+background:linear-gradient(135deg,#ff5fa2,#ff9acb);
+color:white;
+cursor:pointer;
+font-size:1rem;
+margin-top:20px;
+box-shadow:0 10px 25px rgba(255,105,180,0.4);
+transition:.3s;
+}
 
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-      gap: 14px;
-      margin-top: 24px;
-      width: 100%;
-      max-width: 900px;
-    }
+button:hover{
+transform:scale(1.1);
+}
 
-    .gallery img {
-      width: 100%;
-      border-radius: 14px;
-      box-shadow: 0 8px 20px rgba(255, 105, 180, 0.25);
-    }
+.gallery{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+gap:15px;
+max-width:800px;
+margin-top:25px;
+}
 
-    button {
-      margin-top: 28px;
-      padding: 14px 30px;
-      font-size: 1rem;
-      border: none;
-      border-radius: 999px;
-      background: linear-gradient(135deg, #ff5fa2, #ff9acb);
-      color: #fff;
-      cursor: pointer;
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
-      box-shadow: 0 10px 25px rgba(255, 105, 180, 0.4);
-    }
+.gallery img{
+width:100%;
+border-radius:12px;
+box-shadow:0 8px 20px rgba(255,105,180,0.25);
+}
 
-    button:hover {
-      transform: scale(1.08);
-    }
+.hidden-message{
+display:none;
+font-size:1.2rem;
+margin-top:20px;
+color:#ffb6e1;
+}
 
-    .hidden-message {
-      display: none;
-      margin-top: 22px;
-      font-size: 1.1rem;
-      color: #ffb6e1;
-      animation: fadeIn 1s ease forwards;
-    }
+.heart{
+font-size:3rem;
+animation:pulse 1.5s infinite;
+}
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+@keyframes pulse{
+0%{transform:scale(1)}
+50%{transform:scale(1.2)}
+100%{transform:scale(1)}
+}
 
-    footer {
-      font-size: 0.85rem;
-      opacity: 0.6;
-      margin-bottom: 20px;
-    }
-  </style>
+.hearts{
+position:fixed;
+bottom:-50px;
+font-size:22px;
+animation:float 12s linear infinite;
+opacity:.6;
+}
+
+@keyframes float{
+0%{transform:translateY(0)}
+100%{transform:translateY(-120vh)}
+}
+
+.stars{
+position:fixed;
+width:100%;
+height:100%;
+background:url("https://www.transparenttextures.com/patterns/stardust.png");
+opacity:.35;
+}
+
+.countdown{
+font-size:1.5rem;
+margin-top:15px;
+}
+
+footer{
+opacity:.5;
+font-size:.9rem;
+margin-bottom:20px;
+}
+
+</style>
 </head>
+
 <body>
 
-  <!-- Background Music -->
-  <audio autoplay loop>
-    <source src="music.mp3" type="audio/mpeg">
-  </audio>
+<div class="stars"></div>
 
-  <!-- Section 1 -->
-  <section>
-    <div class="heart">❤️</div>
-    <h1>Happy Birthday, My Love</h1>
-    <p>
-      March 10 is extra special, because it brought *you* into this world — and into my life.
-      You make my days brighter, my laughs louder, and my heart fuller.
-    </p>
-  </section>
+<!-- MUSIC -->
+<audio id="music" loop>
+<source src="music.mp3" type="audio/mpeg">
+</audio>
 
-  <!-- Section 2 -->
-  <section>
-    <h2>A Note Just for You 💌</h2>
-    <p>
-      From our silly moments to our quiet late-night talks, every second with you feels like home.
-      Thank you for being you — for your kindness, your warmth, and the way you make everything better
-      just by being around.
-    </p>
-  </section>
+<section>
 
-  <!-- Section 3 -->
-  <section>
-    <h2>Our Little Universe ✨</h2>
-    <p>Some of my favorite memories with my favorite person.</p>
-    <div class="gallery">
-      <img src="photo1.jpg" alt="Memory 1" />
-      <img src="photo2.jpg" alt="Memory 2" />
-      <img src="photo3.jpg" alt="Memory 3" />
-      <img src="photo4.jpg" alt="Memory 4" />
-    </div>
-  </section>
+<div class="heart">❤️</div>
 
-  <!-- Section 4 -->
-  <section>
-    <h2>I Have a Secret 🙈</h2>
-    <p>Click the button… trust me.</p>
-    <button onclick="revealMessage()">Open Your Surprise 🎁</button>
-    <div id="secret" class="hidden-message">
-      I choose you. Today. Tomorrow. Always. ❤️
-    </div>
-  </section>
+<h1>Happy Birthday My Love</h1>
 
-  <footer>
-    Made with ❤️ just for you
-  </footer>
+<p>
+March 10 is special because the most beautiful soul was born that day.
+You make my world brighter every single day.
+</p>
 
-  <script>
-    function revealMessage() {
-      document.getElementById('secret').style.display = 'block';
-    }
-  </script>
+<button onclick="playMusic()">Play Music 🎵</button>
+
+<div class="countdown" id="countdown"></div>
+
+</section>
+
+<section>
+
+<h2>A Note Just for You 💌</h2>
+
+<p>
+Every laugh, every moment, every memory with you feels like magic.
+Thank you for being my happiness and my peace at the same time.
+</p>
+
+</section>
+
+<section>
+
+<h2>Our Little Universe ✨</h2>
+
+<p>Some of my favorite memories with my favorite person.</p>
+
+<div class="gallery">
+
+<img src="photo1.jpg">
+<img src="photo2.jpg">
+<img src="photo3.jpg">
+<img src="photo4.jpg">
+
+</div>
+
+</section>
+
+<section>
+
+<h2>A Letter From My Heart 💌</h2>
+
+<p>
+If life is a story, you are my favorite chapter.
+
+Your smile makes my worst days better.
+Your presence makes ordinary days special.
+
+I hope this year gives you everything your heart desires.
+Because you deserve the world.
+
+Happy Birthday ❤️
+</p>
+
+</section>
+
+<section>
+
+<h2>I Have a Secret 🙈</h2>
+
+<p>Click below…</p>
+
+<button onclick="revealMessage()">Open Your Surprise 🎁</button>
+
+<div id="secret" class="hidden-message"></div>
+
+</section>
+
+<footer>
+Made with ❤️ just for you
+</footer>
+
+<script>
+
+function playMusic(){
+document.getElementById("music").play();
+}
+
+function revealMessage(){
+
+let text="I choose you. Today. Tomorrow. Forever. ❤️";
+
+let i=0;
+
+document.getElementById("secret").style.display="block";
+
+let typing=setInterval(function(){
+
+document.getElementById("secret").innerHTML+=text.charAt(i);
+
+i++;
+
+if(i>=text.length){
+clearInterval(typing);
+}
+
+},70);
+
+
+for(let i=0;i<40;i++){
+
+let confetti=document.createElement("div");
+
+confetti.innerHTML="🎉";
+
+confetti.style.position="fixed";
+
+confetti.style.left=Math.random()*100+"%";
+
+confetti.style.top="-20px";
+
+confetti.style.fontSize="24px";
+
+confetti.style.animation="fall 3s linear forwards";
+
+document.body.appendChild(confetti);
+
+}
+
+}
+
+let birthday=new Date("March 10, 2026 00:00:00").getTime();
+
+let x=setInterval(function(){
+
+let now=new Date().getTime();
+
+let distance=birthday-now;
+
+let days=Math.floor(distance/(1000*60*60*24));
+
+let hours=Math.floor((distance%(1000*60*60*24))/(1000*60*60));
+
+let minutes=Math.floor((distance%(1000*60*60))/(1000*60));
+
+let seconds=Math.floor((distance%(1000*60))/1000);
+
+document.getElementById("countdown").innerHTML=
+"Birthday in "+days+"d "+hours+"h "+minutes+"m "+seconds+"s";
+
+},1000);
+
+</script>
 
 </body>
 </html>
